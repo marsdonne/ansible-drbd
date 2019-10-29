@@ -11,4 +11,4 @@
     name: heartbeat
     state: present
   become: true
-  when: drbd_use_heartbeat
+  when: drbd_use_heartbeat == true
