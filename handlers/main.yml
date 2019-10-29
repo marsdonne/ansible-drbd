@@ -11,3 +11,4 @@
     name: heartbeat
     state: restarted
   become: true
+  when: drbd_use_heartbeat == 'true'
