@@ -53,7 +53,7 @@
         inventory_hostname == groups[drbd_group][0]
 
 - name: config | Waiting For DRBD Sync To Complete
-  command: drbd-overview
+  command: cat /proc/drbd
   become: true
   register: _drbd_sync
   until: ('Inconsistent' not in _drbd_sync['stdout'])
