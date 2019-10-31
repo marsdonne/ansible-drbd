@@ -1,7 +1,7 @@
 ---
 - name: heartbeat | Checking For Existing Heartbeat Authkey
   stat:
-    path: /etc/ha.d/authkeys
+    path: /usr/local/heartbeat/etc/ha.d/authkeys
   register: _drbd_heartbeat_authkey_check
 
 - name: heartbeat | Creating Heartbeat Authkey On Master
@@ -31,7 +31,7 @@
 - name: heartbeat | Configuring Heartbeat Authkey
   template:
     src: etc/ha.d/authkeys.j2
-    dest: /etc/ha.d/authkeys
+    dest: /usr/local/heartbeat/etc/ha.d/authkeys
     mode: "u=rw,g=,o="
   become: true
   notify: restart heartbeat
@@ -40,13 +40,13 @@
 - name: heartbeat | Configuring Heartbeat
   template:
     src: etc/ha.d/ha.cf.j2
-    dest: /etc/ha.d/ha.cf
+    dest: /usr/local/heartbeat/etc/ha.d/ha.cf
   become: true
   notify: restart heartbeat
 
 - name: heartbeat | Configuring Heartbeat Resources
   template:
     src: etc/ha.d/haresources.j2
-    dest: /etc/ha.d/haresources
+    dest: /usr/local/heartbeat/etc/ha.d/haresources
   become: true
   notify: restart heartbeat
